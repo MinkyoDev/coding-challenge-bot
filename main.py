@@ -3,7 +3,7 @@ from discord.ext import commands
 from pathlib import Path
 import os, dotenv
 
-from channels.registration_channel import registration
+from channels.registration.registration_channel import registration
 
 env_path = Path('.') / '.env'
 if env_path.exists():
@@ -33,6 +33,5 @@ async def on_ready():
     print(f'{bot.user}가 준비되었습니다!')
 
     # await bot.add_cog(Registration(bot))
-    
-    
+
 bot.run(BOT_TOKEN)
