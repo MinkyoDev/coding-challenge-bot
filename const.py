@@ -1,0 +1,6 @@
+# message_cog.py
+CHANNEL_LIST = [1221059858111926352]
+
+
+# registration_channel.py
+REGISTRATION_CHANNEL_ID = 1221104764012724344

@@ -1,0 +1,8 @@
+# Security
+.env
+
+# Files
+static/images/temp
+
+# etc
+__pycache__/
