@@ -3,7 +3,8 @@ from discord.ext import commands
 from pathlib import Path
 import os, dotenv
 
-from channels.registration.registration_channel import registration
+from channels.registration.user_channel import registration_channel
+from cogs.message_cog import MessageCog
 
 env_path = Path('.') / '.env'
 if env_path.exists():
@@ -27,8 +28,8 @@ bot = commands.Bot(command_prefix='!', intents=intents)
 
 @bot.event
 async def on_ready():
-    await registration(bot)
-    
+    await registration_channel(bot)
+    await bot.add_cog(MessageCog(bot))
     # await load_extensions()
     print(f'{bot.user}가 준비되었습니다!')
 
