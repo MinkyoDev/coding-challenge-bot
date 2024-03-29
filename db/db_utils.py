@@ -43,3 +43,25 @@ def delete_all_table_contents(SessionLocal):
         print(f"데이터 삭제 중 오류 발생: {e}")
     finally:
         db.close()
+        
+def delete_table_contents(SessionLocal, table_name: str):
+    """
+    지정된 테이블의 모든 데이터를 삭제합니다.
+
+    Parameters:
+    SessionLocal: SQLAlchemy 세션 팩토리
+    table_name (str): 내용을 삭제할 테이블의 이름
+    """
+    db = SessionLocal()
+    try:
+        if table_name in Base.metadata.tables.keys():
+            db.execute(text(f'DELETE FROM {table_name}'))
+            db.commit()
+            print(f"{table_name} 테이블의 내용이 성공적으로 삭제되었습니다.")
+        else:
+            print(f"오류: {table_name} 테이블이 존재하지 않습니다.")
+    except Exception as e:
+        db.rollback()
+        print(f"데이터 삭제 중 오류 발생: {e}")
+    finally:
+        db.close()
