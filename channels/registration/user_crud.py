@@ -8,6 +8,9 @@ def create_user(db_session: Session,
                 global_name: str, 
                 git_username: str, 
                 repository_name: str):
+    existing_user = db_session.query(models.User).filter(models.User.git_username == git_username).first()
+    if existing_user:
+        return None
     db_user = models.User(id=user_id, 
                           name=name,
                           global_name=global_name,
@@ -56,5 +59,37 @@ def deactivate_user(db_session: Session, user_id: int):
         db_session.commit()
         db_session.refresh(db_user)
         return db_user
+    else:
+        raise Exception("User not found")
+    
+def activate_user(db_session: Session, user_id: int):
+    db_user = db_session.query(models.User).filter(models.User.id == user_id).first()
+    
+    if db_user:
+        db_user.use = True
+        
+        db_session.commit()
+        db_session.refresh(db_user)
+        return db_user
+    else:
+        raise Exception("User not found")
+    
+def delete_user(db_session: Session, user_id: int):
+    """
+    지정된 사용자 ID를 가진 사용자 정보를 데이터베이스에서 삭제한다.
+
+    Parameters:
+    db_session (Session): SQLAlchemy 세션 객체
+    user_id (int): 삭제할 사용자의 ID
+
+    Returns:
+    bool: 삭제 성공 여부
+    """
+    db_user = db_session.query(models.User).filter(models.User.id == user_id).first()
+    
+    if db_user:
+        db_session.delete(db_user)
+        db_session.commit()
+        return True
     else:
         raise Exception("User not found")

@@ -10,7 +10,7 @@ class User(Base):
     id = Column(BigInteger, primary_key=True, index=True)
     name = Column(String(255), unique=True, nullable=False)
     global_name = Column(String(255), unique=False, nullable=False)
-    git_username = Column(String(255), unique=False, nullable=False)
+    git_username = Column(String(255), unique=True, nullable=False)
     repository_name = Column(String(255), unique=False, nullable=False)
     created_at = Column(DateTime, default=func.now())
     use = Column(Boolean, nullable=False)
