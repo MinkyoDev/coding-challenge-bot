@@ -11,7 +11,7 @@ engine = create_engine(DATABASE_URI)
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 
 init_db(engine)
-delete_all_table_contents(SessionLocal)
+# delete_all_table_contents(SessionLocal)
 
 def get_db():
     db = SessionLocal()
