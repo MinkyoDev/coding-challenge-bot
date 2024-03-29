@@ -1,21 +1,15 @@
 import discord
-import utils.const as const
 import logging
 
-from utils.clean_channel import clean_all
-from channels.registration.modals import registration, modification, deactivate
-
 from db.db_connection import get_db
-from channels.registration.user_crud import get_user
-from channels.registration.user_embed import embed_emty_user, embed_already_registered, embed_already_deactivated, embed_cannot_edit_while_deactivated
 
-logging.basicConfig(level=logging.INFO,
-                    format='%(asctime)s %(levelname)s     %(message)s',
-                    datefmt='%Y-%m-%d %H:%M:%S')
+from .modals import registration, modification, deactivate
+from .user_crud import get_user
+from .user_embed import embed_emty_user, embed_already_registered, embed_already_deactivated, embed_cannot_edit_while_deactivated
 
 class UserButton(discord.ui.View):
     def __init__(self):
-        super().__init__()
+        super().__init__(timeout=None)
  
     @discord.ui.button(label='등록', style=discord.ButtonStyle.primary, row=1)
     async def registration(self, interaction: discord.Interaction, button: discord.ui.Button):
@@ -54,15 +48,3 @@ class UserButton(discord.ui.View):
             await embed_already_deactivated(interaction)
             return
         await interaction.response.send_modal(deactivate.Deactivate())
-
-
-async def registration_channel(bot):
-    channel = bot.get_channel(const.REGISTRATION_CHANNEL_ID)
-    
-    if channel:
-        await clean_all(channel)
-        
-        embed = discord.Embed(title=":hand_splayed: 안녕하세요!", color=0xFF9900)
-        
-        # await channel.send(embed=embed, view=UserButton())
-        await channel.send(content="여기에 일반 메시지를 입력하세요.", embed=embed, view=UserButton())

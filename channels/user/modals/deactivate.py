@@ -1,8 +1,9 @@
 import discord
 
 from db.db_connection import get_db
-from channels.registration.user_crud import deactivate_user
-from channels.registration.user_embed import embed_deactivate_complite, embed_incorrect_keyword
+
+from ..user_crud import deactivate_user
+from ..user_embed import embed_deactivate_complite, embed_incorrect_keyword
 
 
 class Deactivate(discord.ui.Modal, title='비활성화하기'):

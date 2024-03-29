@@ -1,4 +1,4 @@
-
+import discord
 
 async def clean(message, num: int):
     if num < 1:
@@ -9,7 +9,7 @@ async def clean(message, num: int):
 
     msg = await message.send(f"**{len(deleted)-1}개**의 메시지를 삭제했습니다.", delete_after=5)
     
-async def clean_all(channel, message=False):
+async def clean_all(channel: discord.channel.TextChannel, message=False):
     count = 0
     async for _ in channel.history(limit=None):
         count += 1

@@ -2,10 +2,10 @@ import discord
 
 from db.models import User
 from db.db_connection import get_db
-from channels.registration.user_crud import update_user
-from channels.registration.user_embed import embed_complite, embed_invalid_info
-
 from utils.git_API import check_repository_exists
+
+from ..user_crud import update_user
+from ..user_embed import embed_complite, embed_invalid_info
 
         
 class Modification(discord.ui.Modal, title='수정하기'):
