@@ -3,9 +3,9 @@ import logging
 
 from db.db_connection import get_db
 
-from .modals import registration, modification, deactivate
-from .user_crud import get_user
-from .user_embed import embed_emty_user, embed_already_registered, embed_already_deactivated, embed_cannot_edit_while_deactivated
+from ..modals import registration, modification, deactivate
+from ..user_crud import get_user
+from ..user_embed import embed_emty_user, embed_already_registered, embed_already_deactivated, embed_cannot_edit_while_deactivated
 
 class UserButton(discord.ui.View):
     def __init__(self):

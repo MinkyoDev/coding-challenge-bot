@@ -1,7 +1,9 @@
-import os
-import dotenv
+from pathlib import Path
+import os, dotenv
 
-dotenv.load_dotenv()
+env_path = Path('.') / '.env'
+if env_path.exists():
+    dotenv.load_dotenv(dotenv_path=env_path)
 
 DB_USER = os.getenv('DB_USER')
 DB_PASSWORD = os.getenv('DB_PASSWORD')
