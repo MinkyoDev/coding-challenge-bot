@@ -54,15 +54,16 @@ def postprocessing(commits):
     datas = []
     for commit in commits:
         level, title = extract_level_and_title(commit['commit']['message'])
-        tmp_data = {
-            "author": commit['commit']['author']['name'],
-            "level": level,
-            "title": title,
-            "url": commit['html_url'],
-            "message": commit['commit']['message'],
-            "commit_date": convert_utc_to_seoul(commit['commit']['author']['date'])
-        }
-        datas.append(CommitSchema(**tmp_data))
+        if is_coding_test_solved(level, title):
+            tmp_data = {
+                "author": commit['commit']['author']['name'],
+                "level": level,
+                "title": title,
+                "url": commit['html_url'],
+                "message": commit['commit']['message'],
+                "commit_date": convert_utc_to_seoul(commit['commit']['author']['date'])
+            }
+            datas.append(CommitSchema(**tmp_data))
     return sorted(datas, key=lambda x: x.commit_date, reverse=True)
     
 def convert_utc_to_seoul(utc_str):
@@ -92,6 +93,11 @@ def extract_level_and_title(text):
         return None, title
     else:
         return None, None
+    
+def is_coding_test_solved(level, title):
+    if level is None and title is None:
+        return False
+    return True
 
 def state_print(response: requests):
     print("\n비율 제한 상태:")

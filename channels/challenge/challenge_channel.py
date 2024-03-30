@@ -18,4 +18,4 @@ async def challenge_channel(bot: commands.Bot):
 이 채널에는 여러분이 푼 문제들이 올라오게 됩니다.
         """
         
-        await channel.send(content=content, view=ChallengeButton())
+        await channel.send(content=content, view=ChallengeButton(), silent=True)
