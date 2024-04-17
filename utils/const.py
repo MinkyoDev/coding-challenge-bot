@@ -1,5 +1,6 @@
 from pathlib import Path
-import os, dotenv
+import os, dotenv, datetime
+
 
 env_path = Path('.') / '.env'
 if env_path.exists():
@@ -25,3 +26,7 @@ ADMIN_CHANNEL_ID = 1223614811280117820
 
 # message_auto_delete.py
 MAINTIME = 30
+
+# commute_reminder.py
+REMIND_CHANNEL_ID = 1230084679260966983
+REMIND_TIME = datetime.time(hour=19-9, minute=19, tzinfo=datetime.timezone.utc)

@@ -1,5 +1,7 @@
 discord==2.3.2
 python-dotenv==1.0.1
 requests==2.31.0
-mysql-connector-python==8.3.0
-SQLAlchemy==2.0.29
+colorama==0.4.6
+pytz>=2024.1
+# mysql-connector-python==8.3.0
+# SQLAlchemy==2.0.29
