@@ -29,4 +29,16 @@ MAINTIME = 30
 
 # commute_reminder.py
 REMIND_CHANNEL_ID = 1230084679260966983
-REMIND_TIME = datetime.time(hour=19-9, minute=19, tzinfo=datetime.timezone.utc)
+
+KST = datetime.timezone(datetime.timedelta(hours=9))
+REMIND_TIME = datetime.time(hour=17, minute=58, tzinfo=KST)
+
+CHECK_IN_TIMES = [
+    datetime.time(hour=8, minute=50, tzinfo=KST),
+    datetime.time(hour=9, minute=0, tzinfo=KST)
+    ]
+
+CHECK_OUT_TIMES = [
+    datetime.time(hour=17, minute=50, tzinfo=KST),
+    datetime.time(hour=18, minute=0, tzinfo=KST)
+    ]

@@ -1,11 +1,12 @@
 import discord
-from discord.ext import commands, tasks
+from discord.ext import commands
 import os
 from utils.const import BOT_TOKEN, ADMIN_CHANNEL_ID
 from utils.logger_config import setup_logger
 
 # from channels.user.user_channel import registration_channel
 # from channels.challenge.challenge_channel import challenge_channel
+from channels.setting.setting_chennal import setting_channel
 
 setup_logger()
 
@@ -23,6 +24,7 @@ async def load_extensions():
 async def on_ready():
     # await registration_channel(bot)
     # await challenge_channel(bot)
+    await setting_channel(bot)
 
     await load_extensions()
 
